@@ -342,8 +342,6 @@ GameObject:
   - component: {fileID: 1409590133}
   - component: {fileID: 1409590136}
   - component: {fileID: 1409590135}
-  - component: {fileID: 1409590134}
-  - component: {fileID: 1409590132}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -435,6 +433,7 @@ MonoBehaviour:
   m_RunSpeed: 30
   m_RunstepLenghten: 0
   m_JumpSpeed: 15
+  m_MaximumJumpDelay: 0.5
   m_StickToGroundForce: 1
   m_GravityMultiplier: 1
   m_MouseLook:
@@ -638,17 +637,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1409590132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1409590124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 521b611700410be45810047f0a74e899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &1409590133
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -664,25 +652,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &1409590134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1409590124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 360
-  m_StationaryTurnSpeed: 180
-  m_JumpPower: 12
-  m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 1
-  m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 0.1
 --- !u!136 &1409590135
 CapsuleCollider:
   m_ObjectHideFlags: 0
