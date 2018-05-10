@@ -425,7 +425,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1409590124}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05ec5cf00ca181d45a42ba1870e148c3, type: 3}
   m_Name: 
@@ -434,7 +434,7 @@ MonoBehaviour:
   m_WalkSpeed: 30
   m_RunSpeed: 30
   m_RunstepLenghten: 0
-  m_JumpSpeed: 8
+  m_JumpSpeed: 15
   m_StickToGroundForce: 1
   m_GravityMultiplier: 1
   m_MouseLook:
@@ -534,7 +534,7 @@ CharacterController:
   m_GameObject: {fileID: 1409590124}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Height: 1
   m_Radius: 0.5
@@ -902,13 +902,13 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2068751215}
-  m_LocalRotation: {x: -0, y: -0.12372324, z: -0, w: 0.9923168}
-  m_LocalPosition: {x: 0, y: 0, z: 27}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1433137874}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -14.214001, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -189, y: 120}
