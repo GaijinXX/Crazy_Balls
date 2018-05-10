@@ -15,6 +15,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private float m_RunSpeed;
         [SerializeField] [Range(0f, 1f)] private float m_RunstepLenghten;
         [SerializeField] private float m_JumpSpeed;
+        [SerializeField] private float m_MaximumJumpDelay;        //Custom Property
         [SerializeField] private float m_StickToGroundForce;
         [SerializeField] private float m_GravityMultiplier;
         [SerializeField] private MouseLook m_MouseLook;
@@ -41,6 +42,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+        private float m_JumpDelay;
 
         // Use this for initialization
         private void Start()
@@ -63,10 +65,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             RotateView();
             // the jump state needs to read here to make sure it is not missed
-            if (!m_Jump)
+            if (CrossPlatformInputManager.GetButtonDown("Jump"))
             {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+                m_Jump = true;
+                m_JumpDelay = m_MaximumJumpDelay;
             }
+            m_JumpDelay -= Time.deltaTime;
 
             if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
             {
@@ -112,13 +116,17 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (m_CharacterController.isGrounded)
             {
                 m_MoveDir.y = -m_StickToGroundForce;
-
-                if (m_Jump)
+                
+                if (m_Jump && (m_JumpDelay >= 0))
                 {
                     m_MoveDir.y = m_JumpSpeed;
                     PlayJumpSound();
                     m_Jump = false;
                     m_Jumping = true;
+                }
+                else
+                {
+                    m_Jump = false;
                 }
             }
             else
