@@ -190,7 +190,6 @@ GameObject:
   - component: {fileID: 282840811}
   - component: {fileID: 282840815}
   - component: {fileID: 282840816}
-  - component: {fileID: 282840814}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -259,22 +258,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &282840814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 282840810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f76806479d916a64aa03f8e3eba7912f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 1409590128}
-  distance: 10
-  height: 5
-  rotationDamping: 0
-  heightDamping: 0
 --- !u!222 &282840815
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -294,7 +277,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraDistance: 10
   CameraHeight: 3
-  CameraMovementSpeed: 2
+  CameraMovementSpeed: 5
+  HorizontalRotationDamping: 3
+  VerticalRotationDamping: 3
+  AngleUpperLimit: 30
+  AngleLowerLimit: 45
 --- !u!1 &1394619583
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,9 +668,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e004fefca5c7ba44d9c5ffd46fdee2ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MovePower: 50
+  m_MovePower: 1000
   m_UseTorque: 1
-  m_MaxAngularVelocity: 250
+  m_MaxAngularVelocity: 1000
   m_JumpPower: 0.3
 --- !u!54 &1409590133
 Rigidbody:

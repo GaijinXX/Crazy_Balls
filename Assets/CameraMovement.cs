@@ -2,9 +2,13 @@
 
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] private float CameraDistance = 10;
-    [SerializeField] private float CameraHeight = 3;
-    [SerializeField] private float CameraMovementSpeed = 2;
+    [SerializeField] private float CameraDistance            = 10;
+    [SerializeField] private float CameraHeight              = 3;
+    [SerializeField] private float CameraMovementSpeed       = 2;
+    [SerializeField] private float HorizontalRotationDamping = 3;
+    [SerializeField] private float VerticalRotationDamping   = 3;
+    [SerializeField] private float AngleUpperLimit           = 45;
+    [SerializeField] private float AngleLowerLimit           = 45;
 
     const float Radian = 180 / Mathf.PI;
 
@@ -13,32 +17,36 @@ public class CameraMovement : MonoBehaviour
     private Vector3 rotateValue;
     private GameObject Sphere;
     private Vector3 CameraPositionOffset;
-    private float CameraAngle = 0;
+    private float CameraAngle;
     private float CurrentAngleRad;
-    
+    private float CurrentAngleX;
+    private float CurrentAngleY;
 
     private void Start()
     {
         Sphere = GameObject.Find("Sphere");
+        CameraAngle = 0;
     }
 
     private void Update()
     {
         y = Input.GetAxis("Mouse X");
         x = Input.GetAxis("Mouse Y");
-        rotateValue = new Vector3(x, y * -1, 0) * CameraMovementSpeed;
+
+        CurrentAngleY = Mathf.Lerp(CurrentAngleY, y, Time.deltaTime * HorizontalRotationDamping);
+        CurrentAngleX = Mathf.Lerp(CurrentAngleX, x, Time.deltaTime * VerticalRotationDamping);
+
+        rotateValue = new Vector3(CurrentAngleX, CurrentAngleY * -1, 0) * CameraMovementSpeed;
         transform.eulerAngles = transform.eulerAngles - rotateValue;
-   
         
-        var rot = transform.eulerAngles.x;
+        float rot = transform.eulerAngles.x;
         if (rot > 180)
             rot -= 360;
-        rot = Mathf.Clamp(rot, -45, 45);
+        rot = Mathf.Clamp(rot, -AngleUpperLimit, AngleLowerLimit);
         transform.eulerAngles = new Vector3(rot, transform.eulerAngles.y, 0);
-        Debug.Log(transform.eulerAngles.x);
-
-        CameraAngle += y;
-        CurrentAngleRad = CameraAngle % 180 / Radian * CameraMovementSpeed;
+        
+        CameraAngle += CurrentAngleY;
+        CurrentAngleRad = (CameraAngle % 360) / Radian * CameraMovementSpeed;
         CameraPositionOffset = new Vector3(CameraDistance * Mathf.Sin(CurrentAngleRad), CameraHeight * -1, CameraDistance * Mathf.Cos(CurrentAngleRad));
         transform.position = Sphere.transform.position - CameraPositionOffset;
     }
