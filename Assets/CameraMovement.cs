@@ -2,6 +2,7 @@
 
 public class CameraMovement : MonoBehaviour
 {
+    [SerializeField] private Transform Target;
     [SerializeField] private float CameraDistance            = 10;
     [SerializeField] private float CameraHeight              = 3;
     [SerializeField] private float CameraMovementSpeed       = 2;
@@ -15,7 +16,6 @@ public class CameraMovement : MonoBehaviour
     private float x;
     private float y;
     private Vector3 rotateValue;
-    private GameObject Sphere;
     private Vector3 CameraPositionOffset;
     private float CameraAngle;
     private float CurrentAngleRad;
@@ -24,7 +24,6 @@ public class CameraMovement : MonoBehaviour
 
     private void Start()
     {
-        Sphere = GameObject.Find("Sphere");
         CameraAngle = 0;
     }
 
@@ -48,6 +47,6 @@ public class CameraMovement : MonoBehaviour
         CameraAngle += CurrentAngleY;
         CurrentAngleRad = (CameraAngle % 360) / Radian * CameraMovementSpeed;
         CameraPositionOffset = new Vector3(CameraDistance * Mathf.Sin(CurrentAngleRad), CameraHeight * -1, CameraDistance * Mathf.Cos(CurrentAngleRad));
-        transform.position = Sphere.transform.position - CameraPositionOffset;
+        transform.position = Target.position - CameraPositionOffset;
     }
 }
