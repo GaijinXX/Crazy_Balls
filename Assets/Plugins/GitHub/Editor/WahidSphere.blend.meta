@@ -1,33 +1,24 @@
 fileFormatVersion: 2
-guid: 33b4af6fb7e04ca4d949a8694383a470
+guid: ff4c266a7cecab646b5358d399859f35
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: _Old_House
-    100002: //RootNode
-    100004: Plants_1_3
-    100006: Plants_2_3
-    400000: _Old_House
-    400002: //RootNode
-    400004: Plants_1_3
-    400006: Plants_2_3
-    2100000: Standard_1
-    2100002: Standard_3
-    2100004: Standard_2
-    2300000: _Old_House
-    2300002: Plants_1_3
-    2300004: Plants_2_3
-    3300000: _Old_House
-    3300002: Plants_1_3
-    3300004: Plants_2_3
-    4300000: _Old_House
-    4300002: Plants_2_3
-    4300004: Plants_1_3
-    6400000: _Old_House
-    6400002: Plants_1_3
-    6400004: Plants_2_3
+    100000: Circle
+    100002: Sphere
+    100004: //RootNode
+    400000: Circle
+    400002: Sphere
+    400004: //RootNode
+    2100000: Material_001
+    2300000: Circle
+    2300002: Sphere
+    3300000: Circle
+    3300002: Sphere
+    4300000: Sphere
+    4300002: Circle
     7400000: Default Take
     9500000: //RootNode
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -61,7 +52,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1

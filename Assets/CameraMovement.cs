@@ -17,24 +17,22 @@ public class CameraMovement : MonoBehaviour
     private float y;
     private Vector3 rotateValue;
     private Vector3 CameraPositionOffset;
-    private float CameraAngle;
+    private float CameraAngle = 0;
     private float CurrentAngleRad;
     private float CurrentAngleX;
     private float CurrentAngleY;
-
-    private void Start()
-    {
-        CameraAngle = 0;
-    }
 
     private void Update()
     {
         y = Input.GetAxis("Mouse X");
         x = Input.GetAxis("Mouse Y");
+    }
 
+    private void LateUpdate()
+    {
         CurrentAngleY = Mathf.Lerp(CurrentAngleY, y, Time.deltaTime * HorizontalRotationDamping);
         CurrentAngleX = Mathf.Lerp(CurrentAngleX, x, Time.deltaTime * VerticalRotationDamping);
-
+   
         rotateValue = new Vector3(CurrentAngleX, CurrentAngleY * -1, 0) * CameraMovementSpeed;
         transform.eulerAngles = transform.eulerAngles - rotateValue;
         
