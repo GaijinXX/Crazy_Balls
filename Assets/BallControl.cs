@@ -8,11 +8,16 @@ public class BallControl : MonoBehaviour {
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    void OnGUI()
+    {
+        if (GUILayout.Button("Press Me"))
+            Debug.Log("Hello!");
+    }
+
+    // Update is called once per frame
+    void Update () {
         var key = Input.GetAxis("Vertical");
-        Debug.Log(key);
-		
-	}
+
+    }
 }
