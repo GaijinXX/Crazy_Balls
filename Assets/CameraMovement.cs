@@ -34,21 +34,43 @@ public class CameraMovement : MonoBehaviour
     private float CurrentAngleRad;
     private float CurrentAngleX;
     private float CurrentAngleY;
+    private bool colided = false;
     private bool MiddleButton = false;
+    private Vector3 buf;
+
+    void OnTriggerEnter(Collider collision)
+    {
+
+        Debug.Log(collision.gameObject.name + " Entered");
+        colided = true;
+
+    }
+
+    void OnTriggerExit(Collider collision)
+    {
+
+        Debug.Log(collision.gameObject.name + " Quit");
+        colided = false;
+
+    }
 
     private void Start()
     {
         CurrentHeight = CameraHeight;
         CurrentDistance = CameraDistance;
+        buf = transform.position;
     }
 
     private void Update()
     {
+        //Maybe I should change it to GetAxisRow
+        //Also I should consider changing Arrow Keys to Camera Movement as an alternative to Mouse controll
         y = Input.GetAxis("Mouse X");
         x = Input.GetAxis("Mouse Y");
         MiddleButton = Input.GetButton("Fire3");
         Scroll = Input.mouseScrollDelta;
     }
+
 
     private void LateUpdate()
     {
@@ -77,10 +99,20 @@ public class CameraMovement : MonoBehaviour
             rot -= 360;
         rot = Mathf.Clamp(rot, -AngleUpperLimit, AngleLowerLimit);
         transform.eulerAngles = new Vector3(rot, transform.eulerAngles.y, 0);
-        
+
         CameraAngle += CurrentAngleY;
         CurrentAngleRad = (CameraAngle % 360) / Radian * CameraMovementSpeed;
         CameraPositionOffset = new Vector3(CurrentDistance * Mathf.Sin(CurrentAngleRad), CurrentHeight * -1, CurrentDistance * Mathf.Cos(CurrentAngleRad));
         transform.position = Target.position - CameraPositionOffset;
+
+        
+        RaycastHit hit;
+        if (Physics.Raycast(Target.position, -CameraPositionOffset, out hit, Vector3.Distance(CameraPositionOffset, Vector3.zero)))
+        {
+            transform.position = hit.point;
+            
+        }
+        Debug.Log(Target.position + " " + transform.position);
+        Debug.DrawRay(Target.position, -CameraPositionOffset, Color.red, 0);
     }
 }
